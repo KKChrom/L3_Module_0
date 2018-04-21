@@ -1,9 +1,31 @@
 package IntroToHashMaps;
 
-public class LogSearch {
-  /* 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class LogSearch implements ActionListener {
+	HashMap<Integer, String> hash = new HashMap<Integer, String>();
+	JFrame Frame = new JFrame();
+	JPanel Panel = new JPanel();
+	JButton add = new JButton("Add Entry");
+	JButton Search = new JButton("Search By ID");
+	JButton View = new JButton("View List");
+	JButton remove = new JButton("Remove");
+	public static void main(String[] args) {
+		LogSearch log = new LogSearch();
+		log.createGUI();
+		
+		
+
+	/* 
 	 * Crate a HashMap of Integers for the keys and Strings for the values.
 	 * Create a GUI with three buttons. 
+	 *
 	 * Button 1: Add Entry
 	 * 				When this button is clicked, use an input dialog to ask the user to enter an ID number.
 	 * 				After an ID is entered, use another input dialog to ask the user to enter a name.
@@ -28,4 +50,25 @@ public class LogSearch {
 	 * 				is not in the list. 
 	 *
 	 * */
+}
+	public void createGUI() {
+		Frame.setSize(500, 500);
+		Frame.setVisible(true);
+		Frame.add(Panel);
+		Panel.setVisible(true);
+		Panel.add(add);
+		Panel.add(remove);
+		Panel.add(View);
+		Panel.add(Search);
+		Search.addActionListener(this);
+		add.addActionListener(this);
+		remove.addActionListener(this);
+		View.addActionListener(this);
+		Frame.pack();
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }
