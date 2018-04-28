@@ -2,10 +2,13 @@ package IntroToHashMaps;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class LogSearch implements ActionListener {
@@ -65,10 +68,62 @@ public class LogSearch implements ActionListener {
 		remove.addActionListener(this);
 		View.addActionListener(this);
 		Frame.pack();
+		
 	}
+	public void AddName(String name, int ID) {
+		hash.put(ID, name);
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
-	}
-}
+
+		JButton pressed = (JButton) e.getSource();
+		if (pressed.equals(add)) {
+			String name = JOptionPane.showInputDialog("What name do you want to add?");
+			String DID = JOptionPane.showInputDialog("What is the ID?");
+			int ID = Integer.parseInt(DID);
+			AddName(name, ID);
+			
+
+		}
+		if(pressed.equals(Search))
+		{
+			String DID = JOptionPane.showInputDialog("What is the ID?");
+			int ID = Integer.parseInt(DID);
+			if(hash.keySet().contains(ID))
+			{
+				
+				JOptionPane.showMessageDialog(null,hash.get(ID));
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null,"Entry doesn't exist");
+			}
+		}
+		if (pressed.equals(View)) {
+			String message = "";
+			Object[] s = hash.keySet().toArray();
+			for(int i =0; s.length>i;i++)
+			{
+				message += "ID: "+ s[i] + " Name: "+ hash.get(s[i]) + "\n";
+			}
+			
+			JOptionPane.showMessageDialog(null,message);
+		}
+		if(pressed.equals(remove))
+		{
+			String message = JOptionPane.showInputDialog("What name do you want to remove?");
+			Object[] s = hash.keySet().toArray();
+			for(int i =0; s.length>i;i++)
+			{
+				if(message.equals(hash.get(s[i])))
+				{
+					hash.remove(s[i]);
+				}
+				}
+			}
+
+		}
+		}
+	
